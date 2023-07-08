@@ -27,7 +27,7 @@ function AddQuestion({ open, setOpen }) {
                 user: loggedInUser,
             };
 
-            await axios.post('/api/questions', body, config)
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/questions`, body, config)
                 .then((res) => {
                     setOpen(!open);
                     window.location.reload();
