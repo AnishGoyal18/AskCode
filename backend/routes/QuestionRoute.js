@@ -58,6 +58,28 @@ router.get('/questions', async (req, res) => {
     }
 });
 
+router.put('/questions/:id', async (req, res) => {
+    try {
+        const question = await QuestionModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!question) {
+            return res.status(404).send({
+                status: false,
+                message: "Question not found"
+            });
+        }
+        res.status(200).send({
+            status: true,
+            message: "Question updated successfully",
+            question: question
+        });
+    } catch (e) {
+        console.log(e);
+        res.status(500).send({
+            status: false,
+            message: "Error 500 while updating the question"
+        });
+    }
+});
 
 router.delete('/questions/:id', async (req, res) => {
     try {

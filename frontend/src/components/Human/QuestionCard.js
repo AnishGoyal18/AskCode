@@ -3,9 +3,11 @@ import Avatar from 'react-avatar';
 import { RiQuestionAnswerLine } from 'react-icons/ri';
 import { AiOutlineFieldTime } from 'react-icons/ai';
 import { FaRegComment } from 'react-icons/fa';
+import { FiEdit } from 'react-icons/fi';
 import { MdDeleteOutline } from 'react-icons/md';
 import { TiTickOutline } from 'react-icons/ti';
 import TimeAgo from 'react-timeago';
+import EditQuestion from './EditQuestion';
 import AddAnswer from './AddAnswer';
 import AnswerCard from './AnswerCard';
 import ReactHTmlParser from 'html-react-parser';
@@ -16,6 +18,7 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 function QuestionCard({ question }) {
     const { _id, questionTitle, questionDesc, createdAt, allAnswers, user } = question;
     const [open, setOpen] = useState(false);
+    const [openEdit, setOpenEdit] = useState(false);
     const [showAnswers, setShowAnswers] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const [isShrunk, setIsShrunk] = useState(true);
@@ -90,16 +93,25 @@ function QuestionCard({ question }) {
                                                 </button>
                                             </div>
                                         }
-
-                                        {user && loggedInUser && user.uid === loggedInUser.uid &&
-                                            <button onClick={() => handleDeleteClick()}>
-                                                {isDeleting ?
-                                                    <TiTickOutline className='text-3xl' />
-                                                    :
-                                                    <MdDeleteOutline className='text-3xl' />
-                                                }
-                                            </button>
-                                        }
+                                        <div className='flex'>
+                                            {user && loggedInUser && user.uid === loggedInUser.uid &&
+                                                <>
+                                                    <button onClick={() => setOpenEdit(!openEdit)}>
+                                                        <FiEdit className='text-xl' />
+                                                    </button>
+                                                    <EditQuestion question={question} openEdit={openEdit} setOpenEdit={setOpenEdit} />
+                                                </>
+                                            }
+                                            {user && loggedInUser && user.uid === loggedInUser.uid &&
+                                                <button onClick={() => handleDeleteClick()}>
+                                                    {isDeleting ?
+                                                        <TiTickOutline className='text-2xl' />
+                                                        :
+                                                        <MdDeleteOutline className='text-2xl' />
+                                                    }
+                                                </button>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
