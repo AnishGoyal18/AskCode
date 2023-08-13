@@ -31,7 +31,7 @@ function EditQuestion({ question, openEdit, setOpenEdit }) {
             await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/questions/${_id}`, body, config)
                 .then((res) => {
                     setOpenEdit(!openEdit);
-                    window.location.reload();
+                    // window.location.reload();
                 })
                 .catch((e) => {
                     console.log(e);
