@@ -30,7 +30,7 @@ function AddQuestion({ open, setOpen }) {
             await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/questions`, body, config)
                 .then((res) => {
                     setOpen(!open);
-                    // window.location.reload();
+                    window.location.reload();
                 })
                 .catch((e) => {
                     console.log(e);
