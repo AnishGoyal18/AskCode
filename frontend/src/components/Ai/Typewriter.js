@@ -10,7 +10,7 @@ function Typewriter({ answer }) {
             i++;
         }, 100);
         return () => clearInterval(timer);
-    }, []);
+    }, [answer]);
 
     return (
         <>

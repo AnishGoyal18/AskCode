@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 import { FiUsers } from 'react-icons/fi';
 import { Modal } from 'react-responsive-modal';
@@ -13,6 +13,11 @@ function EditQuestion({ question, openEdit, setOpenEdit }) {
     const [newQuestionTitle, setNewQuestionTitle] = useState(questionTitle);
     const [newQuestionDesc, setNewQuestionDesc] = useState(questionDesc);
     const { loggedInUser } = useUserAuth();
+
+    useEffect(() => {
+        setNewQuestionTitle(questionTitle);
+        setNewQuestionDesc(questionDesc);
+    }, [questionTitle, questionDesc]);
 
     const handleSubmit = async () => {
         if (newQuestionTitle !== "") {
@@ -29,9 +34,8 @@ function EditQuestion({ question, openEdit, setOpenEdit }) {
             };
 
             try {
-                const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/questions/${_id}`, body, config);
+                await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/questions/${_id}`, body, config);
                 setOpenEdit(!openEdit);
-                window.location.reload();
             } catch (error) {
                 console.log(error);
             }

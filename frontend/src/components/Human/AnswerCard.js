@@ -13,7 +13,7 @@ function AnswerCard({ ans }) {
     const [isDeleting, setIsDeleting] = useState(false);
     const { loggedInUser } = useUserAuth();
 
-    const handleDeleteAnswer = async (id) => {
+    const handleDeleteAnswer = async () => {
         const config = {
             headers: {
                 "Content-Type": "application/json"
@@ -21,8 +21,7 @@ function AnswerCard({ ans }) {
         };
 
         try {
-            await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/answers/${id}`, config);
-            window.location.reload();
+            await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/answers/${_id}`, config);
         } catch (error) {
             console.log(error);
         }
@@ -31,7 +30,7 @@ function AnswerCard({ ans }) {
 
     function handleDeleteClick() {
         if (isDeleting) {
-            handleDeleteAnswer(ans._id);
+            handleDeleteAnswer();
             setIsDeleting(false);
         } else {
             setIsDeleting(true);

@@ -28,9 +28,10 @@ function AddQuestion({ open, setOpen }) {
             };
 
             try {
-                const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/questions`, body, config);
+                await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/questions`, body, config);
+                setQuestionTitle("");
+                setQuestionDesc("");
                 setOpen(!open);
-                window.location.reload();
             } catch (error) {
                 console.log(error);
             }

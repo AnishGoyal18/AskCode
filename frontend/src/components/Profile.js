@@ -17,7 +17,7 @@ function Profile() {
             return question.user?.uid === loggedInUser.uid;
         });
         setMyQuestions(filteredQuestions);
-    }, []);
+    }, [allQuestions, loggedInUser.uid]);
 
     const handleLogOut = async (e) => {
         e.preventDefault();

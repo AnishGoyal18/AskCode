@@ -20,7 +20,7 @@ export function QuestionContextProvider({ children }) {
         }
 
         fetchData();
-    }, []);
+    }, [allQuestions]);
 
     if (pending) {
         return (

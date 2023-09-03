@@ -26,9 +26,9 @@ function AddAnswer({ open, setOpen, _id, createdAt }) {
             };
 
             try {
-                const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/answers`, body, config);
+                await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/answers`, body, config);
+                setAnswer("");
                 setOpen(!open);
-                window.location.reload();
             } catch (error) {
                 console.log(error);
             }

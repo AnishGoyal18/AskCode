@@ -14,9 +14,9 @@ function Card({ title, description, buttonText }) {
     return (
         <div className="bg-color2 rounded-lg shadow-lg flex flex-col space-y-3 items-center p-6 h-fit w-full md:w-1/2 lg:w-1/3 mb-8 mx-4">
             {title === 'Ask Human' ?
-                <img src={CommunityImage} alt="My image" className='h-16 my-3' />
+                <img src={CommunityImage} alt="" className='h-16 my-3' />
                 :
-                <img src={AiImage} alt="My image" className='h-15 my-3' />
+                <img src={AiImage} alt="" className='h-15 my-3' />
             }
             <div>
                 <sapn className="text-2xl text-white font-bold mb-4">{title.split(" ")[0]}</sapn>

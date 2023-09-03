@@ -33,7 +33,6 @@ function QuestionCard({ question }) {
 
         try {
             await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/questions/${id}`, config);
-            window.location.reload();
         } catch (error) {
             console.log(error);
         }

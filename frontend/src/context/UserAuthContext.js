@@ -16,7 +16,7 @@ export function UserAuthContextProvider({ children }) {
         });
 
         return () => unsubscribe();
-    }, []);
+    }, [loggedInUser]);
 
     if (pending) {
         return (

@@ -16,7 +16,7 @@ function MyQuestions() {
             return question.user?.uid === loggedInUser.uid;
         });
         setMyQuestions(filteredQuestions);
-    }, []);
+    }, [allQuestions, loggedInUser.uid]);
 
     const handleSortClick = () => {
         setIsOldestFirst(!isOldestFirst);
