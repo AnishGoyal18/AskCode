@@ -12,7 +12,7 @@ function Sidebar({ setActiveComponent }) {
     };
 
     return (
-        <div className="bg-color2 w-60 min-h-screen px-4 pt-8 pb-6">
+        <div className="hidden lg:block bg-color2 w-60 min-h-screen px-4 pt-8 pb-6">
             <div className="flex flex-col space-y-3 text-gray-300 cursor-pointer fixed">
                 <button
                     className={`${activeButton === 'AI' ? 'bg-color1' : ''
