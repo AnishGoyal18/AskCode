@@ -25,16 +25,16 @@ function AddAnswer({ open, setOpen, _id, createdAt }) {
                 user: loggedInUser,
             };
 
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/answers`, body, config)
-                .then((res) => {
-                    setOpen(!open);
-                    window.location.reload();
-                })
-                .catch((e) => {
-                    console.log(e);
-                });
+            try {
+                const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/answers`, body, config);
+                setOpen(!open);
+                window.location.reload();
+            } catch (error) {
+                console.log(error);
+            }
         }
-    }
+    };
+
 
     return (
         <>

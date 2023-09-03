@@ -31,13 +31,12 @@ function QuestionCard({ question }) {
             }
         };
 
-        await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/questions/${id}`, config)
-            .then((res) => {
-                window.location.reload();
-            })
-            .catch((e) => {
-                console.log(e);
-            });
+        try {
+            await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/questions/${id}`, config);
+            window.location.reload();
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     function handleDeleteClick() {

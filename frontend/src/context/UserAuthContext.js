@@ -1,28 +1,30 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../auth/firebase';
-// import ReactLoading from 'react-loading';
+import ReactLoading from 'react-loading';
 
 const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
     const [loggedInUser, setloggedInUser] = useState('');
-    // const [pending, setPending] = useState(true);
+    const [pending, setPending] = useState(true);
 
     useEffect(() => {
-        onAuthStateChanged(auth, (currentUser) => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setloggedInUser(currentUser);
-            // setPending(false);
+            setPending(false);
         });
+
+        return () => unsubscribe();
     }, []);
 
-    // if (pending) {
-    //     return (
-    //         <div className='flex h-screen justify-center items-center'>
-    //             <ReactLoading type='bars' color='gray' />
-    //         </div>
-    //     )
-    // }
+    if (pending) {
+        return (
+            <div className='flex h-screen justify-center items-center'>
+                <ReactLoading type='bars' color='gray' />
+            </div>
+        )
+    }
 
     function signUp(email, password) {
         return createUserWithEmailAndPassword(auth, email, password);

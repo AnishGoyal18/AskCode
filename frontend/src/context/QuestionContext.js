@@ -9,12 +9,17 @@ export function QuestionContextProvider({ children }) {
     const [pending, setPending] = useState(true);
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/questions`).then((res) => {
-            setAllQuestions(res.data.reverse());
-            setPending(false);
-        }).catch((e) => {
-            console.log(e);
-        });
+        async function fetchData() {
+            try {
+                const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/questions`);
+                setAllQuestions(res.data.reverse());
+                setPending(false);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        fetchData();
     }, []);
 
     if (pending) {

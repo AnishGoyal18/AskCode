@@ -15,7 +15,7 @@ function AskQuestion({ open, setOpen }) {
     ]);
     const [question, setQuestion] = useState('');
 
-    function handleSubmit(e) {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (question !== "") {
@@ -24,20 +24,21 @@ function AskQuestion({ open, setOpen }) {
                 { type: 'question', content: question }
             ]);
 
-            axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/ask`, { prompt: question })
-                .then(response => {
-                    setChat(prevChat => [
-                        ...prevChat,
-                        { type: 'answer', content: response.data }
-                    ]);
-                })
-                .catch(error => {
-                    console.log(error);
-                    setChat(prevChat => [
-                        ...prevChat,
-                        { type: 'answer', content: 'Something went wrong...' }
-                    ]);
-                });
+            try {
+                const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/ask`, { prompt: question });
+
+                setChat(prevChat => [
+                    ...prevChat,
+                    { type: 'answer', content: response.data }
+                ]);
+            } catch (error) {
+                console.log(error);
+
+                setChat(prevChat => [
+                    ...prevChat,
+                    { type: 'answer', content: 'Something went wrong...' }
+                ]);
+            }
 
             setQuestion('');
             setOpen(!open);

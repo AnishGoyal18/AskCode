@@ -20,14 +20,14 @@ function AnswerCard({ ans }) {
             }
         };
 
-        await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/answers/${id}`, config)
-            .then((res) => {
-                window.location.reload();
-            })
-            .catch((e) => {
-                console.log(e);
-            });
+        try {
+            await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/answers/${id}`, config);
+            window.location.reload();
+        } catch (error) {
+            console.log(error);
+        }
     };
+
 
     function handleDeleteClick() {
         if (isDeleting) {

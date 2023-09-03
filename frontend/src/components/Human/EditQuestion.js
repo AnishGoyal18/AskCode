@@ -15,7 +15,7 @@ function EditQuestion({ question, openEdit, setOpenEdit }) {
     const { loggedInUser } = useUserAuth();
 
     const handleSubmit = async () => {
-        if (questionTitle !== "") {
+        if (newQuestionTitle !== "") {
             const config = {
                 headers: {
                     "Content-Type": "application/json"
@@ -28,16 +28,16 @@ function EditQuestion({ question, openEdit, setOpenEdit }) {
                 user: loggedInUser,
             };
 
-            await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/questions/${_id}`, body, config)
-                .then((res) => {
-                    setOpenEdit(!openEdit);
-                    window.location.reload();
-                })
-                .catch((e) => {
-                    console.log(e);
-                });
+            try {
+                const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/questions/${_id}`, body, config);
+                setOpenEdit(!openEdit);
+                window.location.reload();
+            } catch (error) {
+                console.log(error);
+            }
         }
-    }
+    };
+
 
     return (
         <>
