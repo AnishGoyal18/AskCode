@@ -12,7 +12,7 @@ const openai = new OpenAIApi(configuration);
 
 router.post('/ask', async (req, res) => {
     try {
-        const prompt = req.body.prompt;
+        const { prompt } = req.body;
 
         const response = await openai.createCompletion({
             model: "text-davinci-003",

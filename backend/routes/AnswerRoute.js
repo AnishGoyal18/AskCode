@@ -2,33 +2,24 @@ const express = require('express');
 const router = express.Router();
 const AnswerModel = require('../models/AnswerModel');
 
+// POST: Create an answer
 router.post('/answers', async (req, res) => {
     try {
-        await AnswerModel.create({
-            answer: req.body.answer,
-            questionId: req.body.questionId,
-            user: req.body.user,
-        }).then(() => {
-            res.status(201).send({
-                status: true,
-                message: "Answer added successfully",
-            });
-        }).catch((err) => {
-            console.log(err)
-            res.status(400).send({
-                status: false,
-                message: "Error 400 while adding answer",
-            });
+        const answer = await AnswerModel.create(req.body);
+        res.status(201).send({
+            status: true,
+            message: "Answer added successfully",
         });
-    } catch (e) {
-        console.log(e)
-        res.status(500).send({
+    } catch (error) {
+        console.error(error);
+        res.status(400).send({
             status: false,
-            message: "Error 500 while adding the answer",
+            message: "Error 400 while adding answer",
         });
     }
 });
 
+// DELETE: Delete an answer by ID
 router.delete('/answers/:id', async (req, res) => {
     try {
         const deletedAnswer = await AnswerModel.findByIdAndDelete(req.params.id);
@@ -43,8 +34,8 @@ router.delete('/answers/:id', async (req, res) => {
             message: "Answer deleted successfully",
             data: deletedAnswer,
         });
-    } catch (e) {
-        console.log(e);
+    } catch (error) {
+        console.error(error);
         res.status(500).send({
             status: false,
             message: "Error 500 while deleting the answer",
