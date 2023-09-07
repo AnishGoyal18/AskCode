@@ -55,7 +55,7 @@ function Sidebar({ setActiveComponent }) {
 
                 <div className="fixed bottom-10 left-6">
                     <button
-                        className="flex items-center space-x-2 px-2 py-2 text-lg font-semibold rounded shadow text-gray-400 bg-color1 hover:text-color3 hover:bg-gray-800 cursor-pointer"
+                        className="flex items-center space-x-2 px-2 py-2 text-lg font-semibold rounded shadow text-gray-400 bg-color1 hover:text-color3  cursor-pointer"
                         onClick={() => setOpen(!open)}
                     >
                         <span>Ask a Question</span>

@@ -2,21 +2,27 @@ import React, { useState, useEffect } from 'react';
 import ReactLoading from 'react-loading';
 import Navbar from '../components/Navbar';
 import Feed from '../components/Human/Feed';
+import DetailedQuestionCard from '../components/Human/DetailedQuestionCard';
 import MyQuestions from '../components/Human/MyQuestions';
 import Profile from '../components/Profile';
 import Sidebar from '../components/Human/Sidebar';
 import { useNavigate } from "react-router-dom";
 
-function AskHumanPage() {
+function DetailedQuestionPage() {
     const [loading, setLoading] = useState(true);
-    const [activeComponent, setActiveComponent] = useState('Community');
+    const [activeComponent, setActiveComponent] = useState('DetailedQuestion');
     const navigate = useNavigate();
 
     const renderActiveComponent = () => {
         switch (activeComponent) {
-            case 'Community': return <Feed />;
-            case 'My Questions': return <MyQuestions />;
-            case 'Profile': return <Profile />
+            case 'Community': navigate('/community');
+            case 'DetailedQuestion': return <DetailedQuestionCard />
+            case 'My Questions':
+                navigate('/community')
+                return <MyQuestions />;
+            case 'Profile':
+                navigate('/community')
+                return <Profile />
             case 'AI':
                 navigate("/ai");
                 return;
@@ -39,7 +45,7 @@ function AskHumanPage() {
         <>
             <div className='bg-color1 flex flex-col'>
                 <Navbar />
-                <div className='flex space-x-5'>
+                <div className='flex'>
                     <Sidebar setActiveComponent={setActiveComponent} />
                     {
                         loading
@@ -56,4 +62,4 @@ function AskHumanPage() {
     )
 }
 
-export default AskHumanPage;
+export default DetailedQuestionPage;

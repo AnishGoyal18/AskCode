@@ -7,6 +7,7 @@ import SignUp from './components/SignUp';
 import Login from './components/Login';
 import HomePage from './pages/HomePage';
 import AskHumanPage from './pages/AskHumanPage';
+import DetailedQuestionPage from './pages/DetailedQuestionPage';
 import AskAiPage from './pages/AskAiPage';
 
 function App() {
@@ -17,10 +18,11 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path='/' element={<HomePage />} />
-              <Route path='/community' element={<ProtectedRoute><AskHumanPage /></ProtectedRoute>} />
-              <Route path='/ai' element={<ProtectedRoute><AskAiPage /></ProtectedRoute>} />
               <Route path='/signup' element={<SignUp />} />
               <Route path='/login' element={<Login />} />
+              <Route path='/community' element={<ProtectedRoute><AskHumanPage /></ProtectedRoute>} />
+              <Route path='/community/:questionId' element={<ProtectedRoute><DetailedQuestionPage /></ProtectedRoute>} />
+              <Route path='/ai' element={<ProtectedRoute><AskAiPage /></ProtectedRoute>} />
             </Routes>
           </BrowserRouter>
         </QuestionContextProvider>

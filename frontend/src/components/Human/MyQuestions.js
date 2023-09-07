@@ -40,10 +40,10 @@ function MyQuestions() {
 
     return (
         <>
-            <div className='w-[80%] mr-5 ml-3 mt-4 sm:ml-10 sm:mr-20 space-y-5'>
+            <div className='w-[90vw] sm:w-[80%] mr-5 ml-3 mt-4 sm:ml-10 sm:mr-20 space-y-5'>
                 <div className="flex justify-between items-center">
                     <span className='text-gray-600'>{questionsToRender.length + ' '} questions</span>
-                    <div className='flex space-x-2'>
+                    <div className='flex space-x-2 mx-5'>
                         <button className={`border border-gray-600 rounded-md text-sm px-3 py-2 ${activeButton === 'allQuestions' ? 'bg-color3 text-color4' : 'text-gray-600'}`}
                             onClick={handleAllQuestionsClick}>
                             All Questions
