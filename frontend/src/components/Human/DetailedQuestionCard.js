@@ -23,7 +23,7 @@ function DetailedQuestionCard() {
     const { allQuestions } = useQuestionContext();
     const filtered = allQuestions.filter(q => q._id === questionId);
     const question = filtered[0];
-    const { _id, questionTitle, questionDesc, createdAt, allAnswers, user } = question;
+    const { _id, questionTitle, questionDesc, createdAt, allAnswers, user } = question || {};
 
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
@@ -40,8 +40,8 @@ function DetailedQuestionCard() {
         };
 
         try {
-            await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/questions/${_id}`, config);
-            navigate('/');
+            const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/questions/${_id}`, config);
+            navigate('/community');
         } catch (error) {
             console.log(error);
         }

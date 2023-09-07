@@ -34,8 +34,6 @@ function AddQuestion({ open, setOpen }) {
                 setQuestionTitle("");
                 setQuestionDesc("");
                 setOpen(!open);
-                console.log(res)
-                navigate(`/community/${res.data.question._id}`);
             } catch (error) {
                 console.log(error);
             }

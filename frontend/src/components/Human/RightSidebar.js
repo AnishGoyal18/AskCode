@@ -9,9 +9,9 @@ const RightSidebar = ({ searchText, selectedTag, tags, handleSearchChange, handl
                     placeholder="Search..."
                     value={searchText}
                     onChange={handleSearchChange}
-                    className="border-none text-gray-300 bg-color1 text-sm rounded-md px-3 py-2 mb-2"
+                    className="sm:hidden border-none text-gray-300 bg-color1 text-sm rounded-md px-3 py-2 mb-2"
                 />
-                <div className='flex flex-col space-y-2'>
+                <div className='flex flex-col space-y-3'>
                     <div className="text-lg font-semibold">Filter by Tags</div>
                     <div className='flex flex-wrap'>
                         {tags.map((tag, index) => (

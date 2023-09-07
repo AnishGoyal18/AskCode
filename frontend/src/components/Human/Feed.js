@@ -6,8 +6,7 @@ import RightSidebar from './RightSidebar';
 
 function Feed() {
     const { allQuestions } = useQuestionContext();
-    const [questionsToRender, setQuestionsToRender] = useState([...allQuestions.reverse()]);
-    const [isOldestFirst, setIsOldestFirst] = useState(false);
+    const [questionsToRender, setQuestionsToRender] = useState(allQuestions);
     const [showUnanswered, setShowUnanswered] = useState(false);
     const [activeButton, setActiveButton] = useState('allQuestions');
 
@@ -16,8 +15,8 @@ function Feed() {
     const tags = ['javascript', 'c++', 'python', 'git', 'react', 'cloud', 'node', 'mongodb', 'sql', 'angular', 'android', 'typescript', 'flutter', 'swift', 'ios'];
 
     useEffect(() => {
-        setQuestionsToRender(allQuestions);
-    }, []);
+        setQuestionsToRender(allQuestions)
+    }, [allQuestions.length]);
 
     const handleSearchChange = (event) => {
         const val = event.target.value;
@@ -48,11 +47,6 @@ function Feed() {
         }
     };
 
-    const handleSortClick = () => {
-        setIsOldestFirst(!isOldestFirst);
-        setQuestionsToRender([...questionsToRender].reverse());
-    };
-
     const handleUnansweredClick = () => {
         setShowUnanswered(true);
         setActiveButton('unanswered');
@@ -81,7 +75,7 @@ function Feed() {
                     <InputBox />
                     <div className="flex justify-between items-center mx-5">
                         <span className='text-gray-600'>{questionsToRender.length + ' '} questions</span>
-                        <div className='flex space-x-2 font-semibold'>
+                        <div className='flex space-x-2 items-center font-semibold'>
                             <button className={`border border-gray-600 text-sm rounded-md px-3 py-2 ${activeButton === 'allQuestions' ? 'bg-color3 text-color4' : 'text-gray-600'}`}
                                 onClick={handleAllQuestionsClick}>
                                 All Questions
@@ -90,10 +84,13 @@ function Feed() {
                                 onClick={handleUnansweredClick}>
                                 Unanswered
                             </button>
-                            <button className="text-gray-600 border border-gray-600 text-sm rounded-md px-3 py-2"
-                                onClick={handleSortClick}>
-                                {isOldestFirst ? 'Newest ▼' : 'Oldest ▲'}
-                            </button>
+                            <input
+                                type="text"
+                                placeholder="Search..."
+                                value={searchText}
+                                onChange={handleSearchChange}
+                                className="hidborder-none text-gray-300 bg-color2 text-sm rounded-md px-3 py-2"
+                            />
                         </div>
                     </div>
                     {
