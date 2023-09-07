@@ -73,25 +73,27 @@ function Feed() {
             <div className='flex w-[90vw] sm:w-[85%] space-x-5'>
                 <div className='sm:w-[85%] space-y-5'>
                     <InputBox />
-                    <div className="flex justify-between items-center mx-5">
-                        <span className='text-gray-600'>{questionsToRender.length + ' '} questions</span>
-                        <div className='flex space-x-2 items-center font-semibold'>
-                            <button className={`border border-gray-600 text-sm rounded-md px-3 py-2 ${activeButton === 'allQuestions' ? 'bg-color3 text-color4' : 'text-gray-600'}`}
-                                onClick={handleAllQuestionsClick}>
-                                All Questions
-                            </button>
-                            <button className={`border border-gray-600 text-sm rounded-md px-3 py-2 ${activeButton === 'unanswered' ? 'bg-color3 text-color4' : 'text-gray-600'}`}
-                                onClick={handleUnansweredClick}>
-                                Unanswered
-                            </button>
-                            <input
-                                type="text"
-                                placeholder="Search..."
-                                value={searchText}
-                                onChange={handleSearchChange}
-                                className="hidborder-none text-gray-300 bg-color2 text-sm rounded-md px-3 py-2"
-                            />
+                    <div className="flex flex-col sm:flex-row justify-between space-y-3 items-center mx-5">
+                        <div className='flex justify-between space-x-2 items-center font-semibold'>
+                            <span className='text-gray-600'>{questionsToRender.length + ' '} questions</span>
+                            <div className='flex space-x-2'>
+                                <button className={`border border-gray-600 text-sm rounded-md px-3 py-2 ${activeButton === 'allQuestions' ? 'bg-color3 text-color4' : 'text-gray-600'}`}
+                                    onClick={handleAllQuestionsClick}>
+                                    All Questions
+                                </button>
+                                <button className={`border border-gray-600 text-sm rounded-md px-3 py-2 ${activeButton === 'unanswered' ? 'bg-color3 text-color4' : 'text-gray-600'}`}
+                                    onClick={handleUnansweredClick}>
+                                    Unanswered
+                                </button>
+                            </div>
                         </div>
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            value={searchText}
+                            onChange={handleSearchChange}
+                            className="border-none w-full sm:w-fit text-gray-300 bg-color2 text-sm rounded-md px-3 py-2"
+                        />
                     </div>
                     {
                         questionsToRender.map((question, index) => (<QuestionCard key={index} question={question} />))
