@@ -41,7 +41,7 @@ function DetailedQuestionCard() {
 
         try {
             await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/questions/${_id}`, config);
-            navigate('/community');
+            navigate('/');
         } catch (error) {
             console.log(error);
         }

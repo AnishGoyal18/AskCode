@@ -32,7 +32,7 @@ function AskHumanPage() {
             behavior: 'smooth',
         });
 
-        if (allQuestions.length) setLoading(false);
+        if (allQuestions !== null) setLoading(false);
     }, [activeComponent]);
 
     return (

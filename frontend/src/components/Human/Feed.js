@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useQuestionContext } from '../../context/QuestionContext';
-import ReactLoading from 'react-loading';
 import InputBox from './InputBox';
 import QuestionCard from './QuestionCard';
 import RightSidebar from './RightSidebar';
@@ -15,6 +14,10 @@ function Feed() {
     const [searchText, setSearchText] = useState('');
     const [selectedTag, setSelectedTag] = useState('');
     const tags = ['javascript', 'c++', 'python', 'git', 'react', 'cloud', 'node', 'mongodb', 'sql', 'angular', 'android', 'typescript', 'flutter', 'swift', 'ios'];
+
+    useEffect(() => {
+        setQuestionsToRender(allQuestions);
+    }, []);
 
     const handleSearchChange = (event) => {
         const val = event.target.value;
@@ -58,6 +61,7 @@ function Feed() {
     const handleAllQuestionsClick = () => {
         setShowUnanswered(false);
         setActiveButton('allQuestions');
+        setQuestionsToRender(allQuestions);
         setSearchText('');
         setSelectedTag('');
     };
@@ -68,7 +72,7 @@ function Feed() {
         } else {
             setQuestionsToRender(allQuestions);
         }
-    }, [allQuestions, showUnanswered]);
+    }, [showUnanswered]);
 
     return (
         <>
