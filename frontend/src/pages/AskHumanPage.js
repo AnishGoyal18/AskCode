@@ -5,11 +5,13 @@ import Feed from '../components/Human/Feed';
 import MyQuestions from '../components/Human/MyQuestions';
 import Profile from '../components/Profile';
 import Sidebar from '../components/Human/Sidebar';
+import { useQuestionContext } from '../context/QuestionContext';
 import { useNavigate } from "react-router-dom";
 
 function AskHumanPage() {
     const [loading, setLoading] = useState(true);
     const [activeComponent, setActiveComponent] = useState('Community');
+    const { allQuestions } = useQuestionContext();
     const navigate = useNavigate();
 
     const renderActiveComponent = () => {
@@ -30,9 +32,7 @@ function AskHumanPage() {
             behavior: 'smooth',
         });
 
-        setTimeout(() => {
-            setLoading(false);
-        }, 600);
+        if (allQuestions.length) setLoading(false);
     }, [activeComponent]);
 
     return (

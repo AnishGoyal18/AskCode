@@ -7,11 +7,13 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
 import { useUserAuth } from '../../context/UserAuthContext';
+import { useNavigate } from "react-router-dom";
 
 function AddQuestion({ open, setOpen }) {
     const [questionTitle, setQuestionTitle] = useState('');
     const [questionDesc, setQuestionDesc] = useState('');
     const { loggedInUser } = useUserAuth();
+    const navigate = useNavigate();
 
     const handleSubmit = async () => {
         if (questionTitle !== "") {
@@ -28,10 +30,12 @@ function AddQuestion({ open, setOpen }) {
             };
 
             try {
-                await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/questions`, body, config);
+                const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/questions`, body, config);
                 setQuestionTitle("");
                 setQuestionDesc("");
                 setOpen(!open);
+                console.log(res)
+                navigate(`/community/${res.data.question._id}`);
             } catch (error) {
                 console.log(error);
             }

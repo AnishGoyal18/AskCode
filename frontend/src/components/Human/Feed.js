@@ -7,21 +7,14 @@ import RightSidebar from './RightSidebar';
 
 function Feed() {
     const { allQuestions } = useQuestionContext();
-    const [questionsToRender, setQuestionsToRender] = useState(allQuestions.reverse());
+    const [questionsToRender, setQuestionsToRender] = useState([...allQuestions.reverse()]);
     const [isOldestFirst, setIsOldestFirst] = useState(false);
     const [showUnanswered, setShowUnanswered] = useState(false);
     const [activeButton, setActiveButton] = useState('allQuestions');
-    const [loading, setLoading] = useState(true);
 
     const [searchText, setSearchText] = useState('');
     const [selectedTag, setSelectedTag] = useState('');
     const tags = ['javascript', 'c++', 'python', 'git', 'react', 'cloud', 'node', 'mongodb', 'sql', 'angular', 'android', 'typescript', 'flutter', 'swift', 'ios'];
-
-    useEffect(() => {
-        if (allQuestions) {
-            setLoading(false);
-        }
-    }, []);
 
     const handleSearchChange = (event) => {
         const val = event.target.value;
@@ -54,7 +47,7 @@ function Feed() {
 
     const handleSortClick = () => {
         setIsOldestFirst(!isOldestFirst);
-        setQuestionsToRender(questionsToRender.reverse())
+        setQuestionsToRender([...questionsToRender].reverse());
     };
 
     const handleUnansweredClick = () => {
@@ -75,48 +68,42 @@ function Feed() {
         } else {
             setQuestionsToRender(allQuestions);
         }
-    }, [showUnanswered]);
+    }, [allQuestions, showUnanswered]);
 
     return (
         <>
-            {loading ?
-                <div className='flex w-[90vw] justify-center items-center h-screen'>
-                    <ReactLoading type='bars' color='gray' />
-                </div>
-                :
-                <div className='flex w-[90vw] sm:w-[85%] space-x-5'>
-                    <div className='sm:w-[85%] space-y-5'>
-                        <InputBox />
-                        <div className="flex justify-between items-center mx-5">
-                            <span className='text-gray-600'>{questionsToRender.length + ' '} questions</span>
-                            <div className='flex space-x-2 font-semibold'>
-                                <button className={`border border-gray-600 text-sm rounded-md px-3 py-2 ${activeButton === 'allQuestions' ? 'bg-color3 text-color4' : 'text-gray-600'}`}
-                                    onClick={handleAllQuestionsClick}>
-                                    All Questions
-                                </button>
-                                <button className={`border border-gray-600 text-sm rounded-md px-3 py-2 ${activeButton === 'unanswered' ? 'bg-color3 text-color4' : 'text-gray-600'}`}
-                                    onClick={handleUnansweredClick}>
-                                    Unanswered
-                                </button>
-                                <button className="text-gray-600 border border-gray-600 text-sm rounded-md px-3 py-2"
-                                    onClick={handleSortClick}>
-                                    {isOldestFirst ? 'Newest ▼' : 'Oldest ▲'}
-                                </button>
-                            </div>
+            <div className='flex w-[90vw] sm:w-[85%] space-x-5'>
+                <div className='sm:w-[85%] space-y-5'>
+                    <InputBox />
+                    <div className="flex justify-between items-center mx-5">
+                        <span className='text-gray-600'>{questionsToRender.length + ' '} questions</span>
+                        <div className='flex space-x-2 font-semibold'>
+                            <button className={`border border-gray-600 text-sm rounded-md px-3 py-2 ${activeButton === 'allQuestions' ? 'bg-color3 text-color4' : 'text-gray-600'}`}
+                                onClick={handleAllQuestionsClick}>
+                                All Questions
+                            </button>
+                            <button className={`border border-gray-600 text-sm rounded-md px-3 py-2 ${activeButton === 'unanswered' ? 'bg-color3 text-color4' : 'text-gray-600'}`}
+                                onClick={handleUnansweredClick}>
+                                Unanswered
+                            </button>
+                            <button className="text-gray-600 border border-gray-600 text-sm rounded-md px-3 py-2"
+                                onClick={handleSortClick}>
+                                {isOldestFirst ? 'Newest ▼' : 'Oldest ▲'}
+                            </button>
                         </div>
-                        {
-                            questionsToRender.map((question, index) => (<QuestionCard key={index} question={question} />))
-                        }
                     </div>
-                    <RightSidebar
-                        searchText={searchText}
-                        selectedTag={selectedTag}
-                        tags={tags}
-                        handleSearchChange={handleSearchChange}
-                        handleTagClick={handleTagClick}
-                    />
+                    {
+                        questionsToRender.map((question, index) => (<QuestionCard key={index} question={question} />))
+                    }
                 </div>
-            }
+                <RightSidebar
+                    searchText={searchText}
+                    selectedTag={selectedTag}
+                    tags={tags}
+                    handleSearchChange={handleSearchChange}
+                    handleTagClick={handleTagClick}
+                />
+            </div>
         </>
     )
 }

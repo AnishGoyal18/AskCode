@@ -2,7 +2,7 @@ import React from 'react';
 
 const RightSidebar = ({ searchText, selectedTag, tags, handleSearchChange, handleTagClick }) => {
     return (
-        <div className="hidden lg:block max-w-[30%] min-h-screen bg-color2 text-gray-300 p-4">
+        <div className="hidden sm:block max-w-[30%] min-h-screen bg-color2 text-gray-300 p-4">
             <div className='flex flex-col space-y-3'>
                 <input
                     type="text"
