@@ -31,8 +31,6 @@ function AskHumanPage() {
             top: 0,
             behavior: 'smooth',
         });
-
-        if (allQuestions !== null) setLoading(false);
     }, [activeComponent]);
 
     return (
@@ -41,15 +39,7 @@ function AskHumanPage() {
                 <Navbar />
                 <div className='flex space-x-5'>
                     <Sidebar setActiveComponent={setActiveComponent} />
-                    {
-                        loading
-                            ?
-                            <div className='flex w-[90vw] justify-center items-center'>
-                                <ReactLoading type='bars' color='gray' />
-                            </div>
-                            :
-                            renderActiveComponent()
-                    }
+                    {renderActiveComponent()}
                 </div>
             </div>
         </>

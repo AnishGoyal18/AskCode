@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { SkeletonTheme } from 'react-loading-skeleton';
 import { UserAuthContextProvider } from './context/UserAuthContext';
 import { QuestionContextProvider } from './context/QuestionContext';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -15,16 +16,18 @@ function App() {
     <div className='bg-color1 h-screen'>
       <UserAuthContextProvider>
         <QuestionContextProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path='/' element={<HomePage />} />
-              <Route path='/signup' element={<SignUp />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/community' element={<ProtectedRoute><AskHumanPage /></ProtectedRoute>} />
-              <Route path='/community/:questionId' element={<ProtectedRoute><DetailedQuestionPage /></ProtectedRoute>} />
-              <Route path='/ai' element={<ProtectedRoute><AskAiPage /></ProtectedRoute>} />
-            </Routes>
-          </BrowserRouter>
+          <SkeletonTheme baseColor="#202020" highlightColor="#39ac37">
+            <BrowserRouter>
+              <Routes>
+                <Route path='/' element={<HomePage />} />
+                <Route path='/signup' element={<SignUp />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/community' element={<ProtectedRoute><AskHumanPage /></ProtectedRoute>} />
+                <Route path='/community/:questionId' element={<ProtectedRoute><DetailedQuestionPage /></ProtectedRoute>} />
+                <Route path='/ai' element={<ProtectedRoute><AskAiPage /></ProtectedRoute>} />
+              </Routes>
+            </BrowserRouter>
+          </SkeletonTheme>
         </QuestionContextProvider>
       </UserAuthContextProvider>
     </div>

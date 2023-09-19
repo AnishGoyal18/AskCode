@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import ReactLoading from 'react-loading';
 import { useQuestionContext } from '../../context/QuestionContext';
 import InputBox from './InputBox';
+import SkeletonCard from './SkeletonCard';
 import QuestionCard from './QuestionCard';
 import RightSidebar from './RightSidebar';
 
 function Feed() {
     const { allQuestions } = useQuestionContext();
+    const [loading, setLoading] = useState(true);
     const [questionsToRender, setQuestionsToRender] = useState(allQuestions);
     const [showUnanswered, setShowUnanswered] = useState(false);
     const [activeButton, setActiveButton] = useState('allQuestions');
@@ -15,7 +18,13 @@ function Feed() {
     const tags = ['javascript', 'c++', 'python', 'git', 'react', 'cloud', 'node', 'mongodb', 'sql', 'angular', 'android', 'typescript', 'flutter', 'swift', 'ios'];
 
     useEffect(() => {
-        setQuestionsToRender(allQuestions)
+        if (allQuestions.length > 0) {
+            setLoading(false);
+        }
+    }, []);
+
+    useEffect(() => {
+        setQuestionsToRender(allQuestions);
     }, [allQuestions.length]);
 
     const handleSearchChange = (event) => {
@@ -95,8 +104,19 @@ function Feed() {
                             className="border-none w-full sm:w-fit text-gray-300 bg-color2 text-sm rounded-md px-3 py-2"
                         />
                     </div>
-                    {
-                        questionsToRender.map((question, index) => (<QuestionCard key={index} question={question} />))
+                    {loading
+                        ?
+                        <>
+                            {
+                                new Array(20).fill(null).map(() => (<SkeletonCard />))
+                            }
+                        </>
+                        :
+                        <>
+                            {
+                                questionsToRender.map((question, index) => (<QuestionCard key={index} question={question} />))
+                            }
+                        </>
                     }
                 </div>
                 <RightSidebar
