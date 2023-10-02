@@ -8,7 +8,7 @@ import RightSidebar from './RightSidebar';
 
 function Feed() {
     const { allQuestions } = useQuestionContext();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(allQuestions.length === 0 ? true : false);
     const [questionsToRender, setQuestionsToRender] = useState(allQuestions);
     const [showUnanswered, setShowUnanswered] = useState(false);
     const [activeButton, setActiveButton] = useState('allQuestions');
@@ -21,7 +21,7 @@ function Feed() {
         if (allQuestions.length > 0) {
             setLoading(false);
         }
-    }, []);
+    }, [allQuestions.length]);
 
     useEffect(() => {
         setQuestionsToRender(allQuestions);
