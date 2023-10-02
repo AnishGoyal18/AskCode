@@ -57,7 +57,7 @@ function AddAnswer({ open, setOpen, _id, createdAt }) {
                 <div className='flex flex-col h-[70vh] px-3 space-y-5 justify-between'>
                     <div className='flex flex-col space-y-5 text-color4'>
                         <div className='flex items-center space-x-2 mb-5'>
-                            <FaUserCircle className='text-color1 rounded-3xl shadow-md text-4xl' />
+                            <FaUserCircle className='text-gray-500 rounded-3xl shadow-md text-4xl' />
                             <div className='flex items-center space-x-2 px-3 py-1 shadow-lg rounded-3xl text-color3 bg-color1'>
                                 <FiUsers className='text-xl' />
                                 <span>Public</span>
@@ -75,7 +75,7 @@ function AddAnswer({ open, setOpen, _id, createdAt }) {
                             <button className='text-color4 hover:text-gray-600' onClick={() => setOpen(!open)}>Cancel</button>
                             <button
                                 onClick={handleSubmit}
-                                className='px-4 py-2 text-sm font-semibold rounded-3xl shadow text-color4 bg-color3 hover:text-color1'>
+                                className='px-4 py-2 text-sm font-semibold rounded-3xl shadow text-color4 bg-color3 hover:text-gray-500'>
                                 Answer</button>
                         </div>
                     </div>

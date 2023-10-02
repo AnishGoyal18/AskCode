@@ -51,7 +51,7 @@ function AnswerCard({ ans }) {
 
     return (
         <>
-            <div className={'pb-3 pr-3 mt-4 ml-14 rounded-lg text-color4'}>
+            <div className={'pb-3 pr-3 mt-4 ml-14 rounded-lg'}>
                 <div className='flex flex-col space-y-2'>
                     <div className='flex space-x-4 space-y-2'>
                         <div className='border-l border-color3'></div>
@@ -62,7 +62,7 @@ function AnswerCard({ ans }) {
                                     <span className='text-color3 marker:font-semibold capitalize'>{user?.email.split('@')[0]}</span>
                                     <span className='flex items-center text-[0.6rem] text-gray-500 font-semibold'>
                                         Answered: &nbsp;
-                                        <span className='flex items-center text-color3'>
+                                        <span className='flex items-center'>
                                             <TimeAgo date={createdAt} /> &nbsp;
                                             <AiOutlineFieldTime />
                                         </span>
@@ -78,7 +78,7 @@ function AnswerCard({ ans }) {
                                     </button>
                                 }
                             </div>
-                            <div className={'break-all text-gray-300 pr-8'}>{ReactHTmlParser(answer)}</div>
+                            <div className={'break-all text-gray-400 pr-8'}>{ReactHTmlParser(answer)}</div>
                         </div>
                     </div>
                 </div>

@@ -7,7 +7,6 @@ import Sidebar from '../components/Ai/Sidebar';
 import { useNavigate } from "react-router-dom";
 
 function AskAiPage() {
-    const [loading, setLoading] = useState(true);
     const [activeComponent, setActiveComponent] = useState('AI');
     const navigate = useNavigate();
 
@@ -28,9 +27,6 @@ function AskAiPage() {
             behavior: 'smooth',
         });
 
-        setTimeout(() => {
-            setLoading(false);
-        }, 600);
     }, [activeComponent]);
 
     return (
@@ -39,15 +35,7 @@ function AskAiPage() {
                 <Navbar />
                 <div className='flex'>
                     <Sidebar setActiveComponent={setActiveComponent} />
-                    {
-                        loading
-                            ?
-                            <div className='flex w-[90vw] justify-center items-center'>
-                                <ReactLoading type='bars' color='gray' />
-                            </div>
-                            :
-                            renderActiveComponent()
-                    }
+                    {renderActiveComponent()}
                 </div>
             </div>
         </>

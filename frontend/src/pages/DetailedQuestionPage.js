@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ReactLoading from 'react-loading';
 import Navbar from '../components/Navbar';
-import Feed from '../components/Human/Feed';
 import DetailedQuestionCard from '../components/Human/DetailedQuestionCard';
 import MyQuestions from '../components/Human/MyQuestions';
 import Profile from '../components/Profile';
@@ -9,7 +7,6 @@ import Sidebar from '../components/Human/Sidebar';
 import { useNavigate } from "react-router-dom";
 
 function DetailedQuestionPage() {
-    const [loading, setLoading] = useState(true);
     const [activeComponent, setActiveComponent] = useState('DetailedQuestion');
     const navigate = useNavigate();
 
@@ -35,10 +32,6 @@ function DetailedQuestionPage() {
             top: 0,
             behavior: 'smooth',
         });
-
-        setTimeout(() => {
-            setLoading(false);
-        }, 600);
     }, [activeComponent]);
 
     return (
@@ -47,15 +40,7 @@ function DetailedQuestionPage() {
                 <Navbar />
                 <div className='flex'>
                     <Sidebar setActiveComponent={setActiveComponent} />
-                    {
-                        loading
-                            ?
-                            <div className='flex w-[90vw] justify-center items-center'>
-                                <ReactLoading type='bars' color='gray' />
-                            </div>
-                            :
-                            renderActiveComponent()
-                    }
+                    {renderActiveComponent()}
                 </div>
             </div>
         </>

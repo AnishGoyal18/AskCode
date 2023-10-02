@@ -19,10 +19,10 @@ function Card({ title, description, buttonText }) {
                 <img src={AiImage} alt="" className='h-15 my-3' />
             }
             <div>
-                <sapn className="text-2xl text-white font-bold mb-4">{title.split(" ")[0]}</sapn>
+                <sapn className="text-2xl text-gray-400 font-bold mb-4">{title.split(" ")[0] + " "}</sapn>
                 <sapn className="text-3xl text-color3 font-bold mb-4">{title.split(" ")[1]}</sapn>
             </div>
-            <div className="text-white mb-4">{description}</div>
+            <div className="text-gray-400 mb-4">{description}</div>
             <button
                 className={'bg-color3 hover:text-color1 text-white px-4 py-2 rounded-lg font-semibold'}
                 onClick={handleClick}

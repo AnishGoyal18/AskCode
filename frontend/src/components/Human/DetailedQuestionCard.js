@@ -135,7 +135,7 @@ function DetailedQuestionCard() {
                         </div>
                     </div>
                     <div className='flex flex-col space-y-3'>
-                        <div className={'break-all text-gray-300 tracking-wide pl-12 pr-6 overflow-x-scroll scrollbar-hide'}>
+                        <div className={'break-all text-gray-400 pl-12 pr-6 overflow-x-scroll scrollbar-hide'}>
                             {
                                 ReactHTmlParser(isShrunk && questionDesc.length > 200 ? questionDesc.slice(0, 200) + ' ...' : questionDesc)
                             }
@@ -166,7 +166,7 @@ function DetailedQuestionCard() {
                         allAnswers.map((ans, index) => (<AnswerCard key={index} ans={ans} />))
                     }
                     <button className='flex items-center space-x-1 w-fit px-3 py-1 rounded 
-                        shadow text-color4 font-semibold bg-color3 hover:text-color2' onClick={() => setOpen(!open)}>
+                        shadow font-semibold text-color1 bg-color3' onClick={() => setOpen(!open)}>
                         <span>Answer</span>
                         <FaRegComment />
                     </button>

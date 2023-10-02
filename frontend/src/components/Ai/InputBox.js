@@ -6,9 +6,9 @@ function InputBox() {
 
     return (
         <>
-            <div className='w-[90vw] sm:w-[80%] mr-5 ml-3 mt-4 sm:ml-10 sm:mr-20 space-y-5'>
+            <div className='flex flex-col w-[100%] md:w-[80%] mx-10 my-4 sm:ml-10 sm:mr-20 space-y-5'>
                 <div className='flex items-center space-x-3 p-3 rounded bg-color2'>
-                    <button className='flex items-start px-4 py-2 w-[95%] rounded-3xl text-color4 bg-color1 font-roboto'
+                    <button className='flex items-start px-4 py-2 w-[95%] rounded-3xl text-gray-400 tracking-widest bg-color1 font-roboto'
                         onClick={() => setOpen(!open)}>Ask me anything..
                     </button>
                 </div>

@@ -23,20 +23,20 @@ function HomeNavbar() {
             <div className='flex justify-between sticky top-0 overflow-hidden px-12 py-3 shadow-md bg-color2'>
                 <div className='flex items-center text-color4 text-2xl cursor-pointer'
                     onClick={() => navigate('/')}>
-                    <span>Ask</span>
+                    <span className='text-gray-400'>Ask</span>
                     <span className='font-semibold text-color3'>Code</span>
                     <SiCodenewbie className='text-color3' />
                 </div>
                 {loggedInUser === null ?
                     <div className='flex items-center'>
                         <button
-                            className='bg-color3 hover:bg-opacity-75 hover:text-color1 text-color4 rounded-lg py-2 px-3 sm:px-5 mr-1 sm:mr-4'
+                            className='bg-color3 hover:bg-color4 text-color2 rounded-lg py-2 px-3 sm:px-5 mr-1 sm:mr-4'
                             onClick={() => navigate('/login')}
                         >
                             Log In
                         </button>
                         <button
-                            className='border border-color3 text-color3 hover:text-color1 hover:bg-color3  rounded-lg py-2 px-3 sm:px-5'
+                            className='border border-color3 text-color3 hover:text-color2 hover:bg-color3  rounded-lg py-2 px-3 sm:px-5'
                             onClick={() => navigate('/signup')}
                         >
                             Sign Up

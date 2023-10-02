@@ -43,7 +43,7 @@ function Profile() {
     }
 
     return (
-        <div className="flex flex-col space-y-14 bg-color2 text-color4 w-[60%] h-full px-5 py-8 mx-5 sm:ml-10 my-5 shadow-lg rounded-lg">
+        <div className="flex flex-col space-y-14 bg-color2 text-color4 w-[90%] sm:w-[60%] h-full px-5 py-8 mx-5 sm:ml-10 my-5 shadow-lg rounded-lg">
             <div className='flex flex-col space-y-5'>
                 <div className="flex space-x-7 items-center">
                     <Avatar name={loggedInUser?.email} color='gray' size="80" round={false} textSizeRatio={2} className='p-2' />
@@ -74,7 +74,7 @@ function Profile() {
                 </div>
             </div>
             <div>
-                <button className="flex space-x-1 items-center mx-auto bg-color3 hover:text-color1 text-color4 font-bold py-2 px-4 rounded-lg shadow-md"
+                <button className="flex space-x-1 items-center mx-auto bg-color3 text-color1 font-bold py-2 px-4 rounded-lg shadow-md"
                     onClick={(e) => confirmLogout(e)}>
                     <span>Logout</span>
                     <ImSwitch />

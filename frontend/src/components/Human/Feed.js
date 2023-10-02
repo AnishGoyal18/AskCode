@@ -79,18 +79,18 @@ function Feed() {
 
     return (
         <>
-            <div className='flex w-[90vw] sm:w-[85%] space-x-5'>
-                <div className='sm:w-[85%] space-y-5'>
+            <div className='flex justify-between w-[90%] sm:w-[100%] lg:w-[85%] space-x-5'>
+                <div className='sm:w-[85%] space-y-5 my-5'>
                     <InputBox />
                     <div className="flex flex-col sm:flex-row justify-between space-y-3 items-center mx-5">
                         <div className='flex justify-between space-x-2 items-center font-semibold'>
                             <span className='text-gray-600'>{questionsToRender.length + ' '} questions</span>
                             <div className='flex space-x-2'>
-                                <button className={`border border-gray-600 text-sm rounded-md px-3 py-2 ${activeButton === 'allQuestions' ? 'bg-color3 text-color4' : 'text-gray-600'}`}
+                                <button className={`border border-gray-600 text-sm rounded-md px-3 py-2 ${activeButton === 'allQuestions' ? 'text-color1 bg-color3' : 'text-gray-600'}`}
                                     onClick={handleAllQuestionsClick}>
                                     All Questions
                                 </button>
-                                <button className={`border border-gray-600 text-sm rounded-md px-3 py-2 ${activeButton === 'unanswered' ? 'bg-color3 text-color4' : 'text-gray-600'}`}
+                                <button className={`border border-gray-600 text-sm rounded-md px-3 py-2 ${activeButton === 'unanswered' ? 'text-color1 bg-color3' : 'text-gray-600'}`}
                                     onClick={handleUnansweredClick}>
                                     Unanswered
                                 </button>

@@ -44,11 +44,11 @@ function MyQuestions() {
                 <div className="flex justify-between items-center">
                     <span className='text-gray-600'>{questionsToRender.length + ' '} questions</span>
                     <div className='flex space-x-2 mx-5'>
-                        <button className={`border border-gray-600 rounded-md text-sm px-3 py-2 ${activeButton === 'allQuestions' ? 'bg-color3 text-color4' : 'text-gray-600'}`}
+                        <button className={`border border-gray-600 rounded-md text-sm px-3 py-2 ${activeButton === 'allQuestions' ? 'bg-color3 text-color2' : 'text-gray-600'}`}
                             onClick={handleAllQuestionsClick}>
                             All Questions
                         </button>
-                        <button className={`border border-gray-600 rounded-md text-sm px-3 py-2 ${activeButton === 'unanswered' ? 'bg-color3 text-color4' : 'text-gray-600'}`}
+                        <button className={`border border-gray-600 rounded-md text-sm px-3 py-2 ${activeButton === 'unanswered' ? 'bg-color3 text-color2' : 'text-gray-600'}`}
                             onClick={handleUnansweredClick}>
                             Unanswered
                         </button>
